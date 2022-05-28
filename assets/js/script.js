@@ -1,5 +1,5 @@
 var apiKey = "0e55a5a5786ba0f434d9a700c4847843"
-var cityName = "Toronto"
+var cityName = "Atlanta"
 var cityLongitude;
 var cityLatitude;
 // http://api.openweathermap.org/geo/1.0/direct?q=Toronto&appid=0e55a5a5786ba0f434d9a700c4847843
@@ -23,7 +23,7 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey
             return response.json();
             })
             .then(function (data) {
-                console.log(data)
+                localStorage.setItem(cityName, JSON.stringify(data))
             })
     })
 
