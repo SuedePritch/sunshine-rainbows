@@ -4,10 +4,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather</title>
 </head>
 <body>
-    <input type="text" name="search" id="search" placeholder="Search by City">
+    <main>
+        <div class="weather">
+            <!-- Current Weather -->
+                <input type="text" name="search" id="search" placeholder="Search by City">
+                <div id="save-search"></div>
+                <div id="current-cityname">Toronto</div>
+                <div id="current-date">Monday May 30</div>
+                <div id="current-temp">Temp: 18 deg</div>
+                <div id="current-conditions">Rain</div>
+                <div id="current-humidity">Humidity: 90%</div>
+                <div id="current-windspeed">Wind: 12 kmh N/NE</div>
+                <div id="current-uvindex">UV index: 2.1</div>
+                <!-- Five Day Forecast -->
+                <div class="five-day-forcast">
+                    <div class="day">
+                        <div id="date">Tuesday</div>
+                        <div id="condition">Sunny</div>
+                        <div id="temp">20deg</div>
+                        <div id="wind">15kph</div>
+                        <div id="humidity">40%</div>
+                    </div>
+                    <div class="day">
+                        <div id="date">Wednesday</div>
+                        <div id="condition">Sunny</div>
+                        <div id="temp">20deg</div>
+                        <div id="wind">15kph</div>
+                        <div id="humidity">40%</div>
+                    </div>
+                    <div class="day">
+                        <div id="date">Thursday</div>
+                        <div id="condition">Sunny</div>
+                        <div id="temp">20deg</div>
+                        <div id="wind">15kph</div>
+                        <div id="humidity">40%</div>
+                    </div>
+                    <div class="day">
+                        <div id="date">Friday</div>
+                        <div id="condition">Sunny</div>
+                        <div id="temp">20deg</div>
+                        <div id="wind">15kph</div>
+                        <div id="humidity">40%</div>
+                    </div>
+                    <div class="day">
+                        <div id="date">Saturday</div>
+                        <div id="condition">Sunny</div>
+                        <div id="temp">20deg</div>
+                        <div id="wind">15kph</div>
+                        <div id="humidity">40%</div>
+                    </div>
+                </div>
+        </div>
+    </main>
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
