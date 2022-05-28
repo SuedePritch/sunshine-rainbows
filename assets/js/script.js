@@ -18,10 +18,12 @@ var currentUVIndexEl = document.getElementById('current-uvindex')
 
 function loadCurrentWeather(){
     var storedCityData = JSON.parse(localStorage.getItem(cityName))
-    currentCityNameEl.textContent = cityName
+    currentCityNameEl.textContent = `${cityName.name}, ${cityName.state}, ${cityName.country} `
     currentDateEl.textContent = now
     currentTempEl.textContent = `Temp: ${Math.floor(storedCityData.current.temp - 273)} C`
-    currentConditionEl.textContent = storedCityData.current.weather[0].main
+    var icon = storedCityData.current.weather[0].icon
+    currentConditionEl.innerHTML = `<img src=https://openweathermap.org/img/wn/${icon}@4x.png>`
+    
     currentHumidityEl.textContent = `Humidity: ${storedCityData.current.humidity}`
     currentWindspeedEl.textContent = `Wind Speed: ${storedCityData.current.wind_speed}`
     currentUVIndexEl.textContent = `UV index:${storedCityData.current.uvi}`
@@ -30,11 +32,17 @@ function loadCurrentWeather(){
 function fetchWeatherData(){
     //find lat and long from city name
     //https://openweathermap.org/api/geocoding-api
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`)
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&appid=${apiKey}`)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
+        cityName = {
+            name:data[0].name,
+            state:data[0].state,
+            country:data[0].country
+        }
+        console.log(cityName);
         cityLatitude = data[0].lat
         cityLongitude = data[0].lon
     }).then(function (){
@@ -48,14 +56,14 @@ function fetchWeatherData(){
             })
             .then(function (data) {
                 localStorage.setItem(cityName, JSON.stringify(data))
-                loadCurrentWeather();
+                loadCurrentWeather()
+                
             })
         })
 
     }
 searchSubmitEl.addEventListener('click', function(){
     searchText = searchFieldEl.value
-    cityName = searchText
-    console.log(cityName);
+    
     fetchWeatherData();
 })
