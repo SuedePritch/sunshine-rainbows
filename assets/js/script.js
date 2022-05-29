@@ -31,11 +31,11 @@ function loadCurrentWeather(){
         <img src="https://openweathermap.org/img/wn/${icon}@4x.png">
         <figcaption id="current-condition-description">${iconDescription}</figcaption>
     </figure>`
-    currentHumidityEl.textContent = `Humidity: ${storedCityData.current.humidity}`
-    currentWindspeedEl.textContent = `Wind Speed: ${storedCityData.current.wind_speed}`
+    currentHumidityEl.textContent = `Humidity: ${storedCityData.current.humidity} %`
+    currentWindspeedEl.textContent = `Wind Speed: ${storedCityData.current.wind_speed} m/s`
     currentUVIndexEl.textContent = `UV index:${storedCityData.current.uvi}`
     
-    if(storedCityData.current.uvi > 11){
+    if(storedCityData.current.uvi >= 11){
         currentUVIndexEl.setAttribute('class', 'extreme-uv')
     }else if(storedCityData.current.uvi < 11 && storedCityData.current.uvi >= 8){
         currentUVIndexEl.setAttribute('class', 'very-high-uv')
@@ -76,9 +76,9 @@ function loadFiveDayForcast(){
         humidityDiv.attr('id',`humidity-${i}`)
         dateDiv.text(date)
         conditionImg.attr('src', `https://openweathermap.org/img/wn/${iconSmall}@2x.png`)
-        tempDiv.text(`${Math.floor(storedCityData.daily[`${i}`].temp.day) - 273}C` )
-        windDiv.text(`${storedCityData.daily[`${i}`].wind_speed}m/s`)
-        humidityDiv.text(`${storedCityData.daily[`${i}`].humidity}%`)
+        tempDiv.text(`Temp: ${Math.floor(storedCityData.daily[`${i}`].temp.day) - 273}C` )
+        windDiv.text(`Wind: ${storedCityData.daily[`${i}`].wind_speed}m/s`)
+        humidityDiv.text(`Humidity ${storedCityData.daily[`${i}`].humidity}%`)
         $('#five-day-forcast').append(dayContainerEl)
         dayContainerEl.append(dateDiv, conditionDiv, tempDiv, windDiv, humidityDiv)
         conditionDiv.append(conditionImg)
@@ -120,6 +120,7 @@ function fetchWeatherData(){
             })
     }
     )}
+
 
 searchFieldEl.addEventListener('keypress', function(e){
     if(e.key === 'Enter'){
