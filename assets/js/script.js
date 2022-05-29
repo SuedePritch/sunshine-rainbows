@@ -34,6 +34,20 @@ function loadCurrentWeather(){
     currentHumidityEl.textContent = `Humidity: ${storedCityData.current.humidity}`
     currentWindspeedEl.textContent = `Wind Speed: ${storedCityData.current.wind_speed}`
     currentUVIndexEl.textContent = `UV index:${storedCityData.current.uvi}`
+    
+    if(storedCityData.current.uvi > 11){
+        currentUVIndexEl.setAttribute('class', 'extreme-uv')
+    }else if(storedCityData.current.uvi < 11 && storedCityData.current.uvi >= 8){
+        currentUVIndexEl.setAttribute('class', 'very-high-uv')
+    }else if(storedCityData.current.uvi < 8 && storedCityData.current.uvi >= 6){
+        currentUVIndexEl.setAttribute('class', 'high-uv')
+    }else if(storedCityData.current.uvi < 6 && storedCityData.current.uvi >=3){
+        currentUVIndexEl.setAttribute('class', 'medium-uv')
+    }else if(storedCityData.current.uvi < 3){
+        currentUVIndexEl.setAttribute('class', 'low-uv')
+    }else{
+        return
+    }
 }        
 
 function loadFiveDayForcast(){
@@ -68,7 +82,6 @@ function loadFiveDayForcast(){
         $('#five-day-forcast').append(dayContainerEl)
         dayContainerEl.append(dateDiv, conditionDiv, tempDiv, windDiv, humidityDiv)
         conditionDiv.append(conditionImg)
-        console.log(date);
 
     }
 
@@ -108,7 +121,6 @@ function fetchWeatherData(){
     }
     )}
 
-    
 searchFieldEl.addEventListener('keypress', function(e){
     if(e.key === 'Enter'){
         searchText = searchFieldEl.value
