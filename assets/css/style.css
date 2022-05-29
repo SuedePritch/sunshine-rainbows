@@ -1,3 +1,11 @@
+:root{
+    --clr-primary:      hsl(92, 20%,  50%);
+    --clr-accent:       hsl(92, 20%,  40%);
+    --clr-primary-dark: hsl(92, 20%,  10%);
+    --clr-light:        hsl(0, 0%, 100%);
+}
+
+
 *,
 *::before,
 *::after{
@@ -6,9 +14,9 @@
     box-sizing: border-box;
 }
 body{
-    font-size: 16px;
+    font-size: 24px;
     font-family: 'Kanit', sans-serif;
-    font-weight: 100;
+    font-weight: 500;
 }
 /* CURRENT WEATHER STYLES AND GRID */
 .weather{
@@ -18,15 +26,16 @@ body{
     display:grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(20, 1fr);
-    gap:0.25rem;
-    background-color: hsla(208, 29%, 62%, 0.9);
+    gap:1rem;
+    background-color: var(--clr-accent);
+    color:var(--clr-primary-dark);
 }
 .weather > div{
     margin:0;
     display: flex;
     justify-content: center;
     align-items: center;
-    border:2px solid black;
+    /* border:2px solid var(--clr-primary-dark); */
     height:100%;
     width:100%;
 }
@@ -34,6 +43,7 @@ body{
 #searchbar{
     grid-column: span 12;
     grid-row: span 2;
+    
 }
 #search{
     padding:1rem;
@@ -43,10 +53,24 @@ body{
 #searchSubmit{
     height: 100%;
     width: 20%;
+    border: none;
+    background-color: var(--clr-primary-dark);
+    color:var(--clr-light)
+    
 }
 #save-search{
     grid-column: span 12;
 }
+#current-cityname,
+#current-date,
+#current-conditions,
+#current-temp,
+#current-humidity,
+#current-windspeed,
+#current-uvindex{
+    background: var(--clr-primary);
+}
+
 #current-cityname{
     grid-column: span 8;
     grid-row: span 2;
@@ -58,6 +82,11 @@ body{
 #current-conditions{
     grid-column: span 6;
     grid-row: span 8;
+    background: var(--clr-primary-dark);
+}
+#current-condition-description{
+    color: var(--clr-light);
+    text-align: center;
 }
 #current-temp,
 #current-humidity,
@@ -66,10 +95,15 @@ body{
     grid-column:span 6 ;
     grid-row: span 2;
 }
-.five-day-forcast{
+#five-day-forcast{
     grid-column: span 12;
     grid-row: span 8;
 }
 .day{
+    margin: 0.5rem;
     padding:1rem;
+    width: 150px;
+    grid-column: span 2;
+    background: var(--clr-primary);
+    text-align: center;
 }

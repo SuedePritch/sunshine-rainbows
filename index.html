@@ -13,11 +13,11 @@
 <body>
     <main>
         <div class="weather">
+            <div id="searchbar">
+                <input type="text" name="search" id="search" placeholder="Search by City">
+                <button id="searchSubmit">Search</button>
+            </div>
             <!-- Current Weather -->
-                <div id="searchbar">
-                    <input type="text" name="search" id="search" placeholder="Search by City">
-                    <button id="searchSubmit">Search</button>
-                </div>
                 <div id="save-search"></div>
                 <div id="current-cityname"></div>
                 <div id="current-date"></div>
@@ -27,45 +27,11 @@
                 <div id="current-windspeed"></div>
                 <div id="current-uvindex"></div>
                 <!-- Five Day Forecast -->
-                <div class="five-day-forcast">
-                    <div class="day">
-                        <div id="date"></div>
-                        <div id="condition"></div>
-                        <div id="temp"></div>
-                        <div id="wind"></div>
-                        <div id="humidity"></div>
-                    </div>
-                    <div class="day">
-                        <div id="date">Wednesday</div>
-                        <div id="condition">Sunny</div>
-                        <div id="temp">20deg</div>
-                        <div id="wind">15kph</div>
-                        <div id="humidity">40%</div>
-                    </div>
-                    <div class="day">
-                        <div id="date">Thursday</div>
-                        <div id="condition">Sunny</div>
-                        <div id="temp">20deg</div>
-                        <div id="wind">15kph</div>
-                        <div id="humidity">40%</div>
-                    </div>
-                    <div class="day">
-                        <div id="date">Friday</div>
-                        <div id="condition">Sunny</div>
-                        <div id="temp">20deg</div>
-                        <div id="wind">15kph</div>
-                        <div id="humidity">40%</div>
-                    </div>
-                    <div class="day">
-                        <div id="date">Saturday</div>
-                        <div id="condition">Sunny</div>
-                        <div id="temp">20deg</div>
-                        <div id="wind">15kph</div>
-                        <div id="humidity">40%</div>
-                    </div>
-                </div>
+                <div id="five-day-forcast">
+                </div>    
         </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.2/dayjs.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
