@@ -61,6 +61,12 @@ body{
 #save-search{
     grid-column: span 12;
 }
+.search-history-button{
+    padding:1rem 1.25rem;
+    margin:0 1rem;
+    background: var(--clr-primary-dark);
+    color: var(--clr-light);
+}
 #current-cityname,
 #current-date,
 #current-conditions,
@@ -98,11 +104,11 @@ body{
 #five-day-forcast{
     grid-column: span 12;
     grid-row: span 8;
+    font-size: 16px;
 }
 .day{
     margin: 0.5rem;
     padding:1rem;
-    width: 150px;
     grid-column: span 2;
     background: var(--clr-primary);
     text-align: center;

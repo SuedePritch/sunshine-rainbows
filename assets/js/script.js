@@ -5,6 +5,7 @@ var cityLatitude;
 // http://api.openweathermap.org/geo/1.0/direct?q=Toronto&appid=0e55a5a5786ba0f434d9a700c4847843
 var searchFieldEl = document.getElementById('search')
 var searchSubmitEl = document.getElementById('searchSubmit')
+var searchHistoryEl = $('#save-search')
 var searchText;
 var cityName;
 
@@ -19,7 +20,8 @@ var currentUVIndexEl = document.getElementById('current-uvindex')
 
 function loadCurrentWeather(){
     var storedCityData = JSON.parse(localStorage.getItem(cityName))
-    currentCityNameEl.textContent = `${cityName.name}, ${cityName.state}, ${cityName.country} `
+
+    currentCityNameEl.textContent = `${cityName} `
     currentDateEl.textContent = now
     currentTempEl.textContent = `Temp: ${Math.floor(storedCityData.current.temp - 273)} C`
     var icon = storedCityData.current.weather[0].icon
@@ -41,7 +43,7 @@ function loadFiveDayForcast(){
 
     for(var i = 0; i < 5; i++){
         var iconSmall = `${storedCityData.daily[`${i}`].weather[0].icon}`
-        var date = dayjs().add(`${i}`,'day').format('dddd')
+        var date = dayjs().add(`${i}`,'day').format('MMM DD')
         var dayContainerEl = $("<div>")
         var dateDiv =      $("<div>");
         var conditionDiv = $("<div>");
@@ -85,11 +87,7 @@ function fetchWeatherData(){
         return response.json();
     })
     .then(function (data) {
-        cityName = {
-            name:data[0].name,
-            state:data[0].state,
-            country:data[0].country
-            }
+        cityName = searchText
         cityLatitude = data[0].lat
         cityLongitude = data[0].lon
     }).then(function (){
@@ -110,14 +108,32 @@ function fetchWeatherData(){
     }
     )}
 
+    
 searchFieldEl.addEventListener('keypress', function(e){
     if(e.key === 'Enter'){
         searchText = searchFieldEl.value
+        saveSearchHistory()
         fetchWeatherData();
     }
 })
 searchSubmitEl.addEventListener('click', function(){
     searchText = searchFieldEl.value
+    saveSearchHistory()
     fetchWeatherData();
+})
+function saveSearchHistory(){
+    var singleSavedSearch = $("<button>");
+    singleSavedSearch.addClass('search-history-button')
+    singleSavedSearch.attr('id', `${searchFieldEl.value}`)
+    singleSavedSearch.text(searchFieldEl.value);
+    $('#save-search').append(singleSavedSearch)
+}
+
+searchHistoryEl.on('click', '.search-history-button' , function(event){
+    var chosenSavedSearch = event.target.id
+    cityName = chosenSavedSearch
+    JSON.parse(localStorage.getItem(cityName))
+    loadCurrentWeather();
+    loadFiveDayForcast();
 })
 
