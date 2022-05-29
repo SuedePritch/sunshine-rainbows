@@ -36,7 +36,9 @@ function loadCurrentWeather(){
 
 function loadFiveDayForcast(){
     var storedCityData = JSON.parse(localStorage.getItem(cityName))
+    //this makes the 5day empty, as content is not updated just added
     $('#five-day-forcast').text('')
+
     for(var i = 0; i < 5; i++){
         var iconSmall = `${storedCityData.daily[`${i}`].weather[0].icon}`
         var date = dayjs().add(`${i}`,'day').format('dddd')
@@ -78,7 +80,7 @@ function loadFiveDayForcast(){
 function fetchWeatherData(){
     //find lat and long from city name
     //https://openweathermap.org/api/geocoding-api
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchText}&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchText}&appid=${apiKey}`)
     .then(function (response) {
         return response.json();
     })
